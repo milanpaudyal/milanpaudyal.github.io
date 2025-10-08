@@ -121,9 +121,19 @@ function App() {
 
   const experience = [
     {
+      title: 'AI/ML and Automation Lead',
+      company: 'eSewa Ltd.',
+      period: 'Aug 2025 – Present',
+      achievements: [
+        'Leading AI/ML initiatives and automation strategies',
+        'Driving intelligent system architecture decisions',
+        'Mentoring team on advanced ML implementations'
+      ]
+    },
+    {
       title: 'AI/ML Engineer',
-      company: 'eSewa',
-      period: 'Sep 2022 – Present',
+      company: 'eSewa Ltd.',
+      period: 'Sep 2022 – Aug 2025',
       achievements: [
         'Designed fraud detection pipelines using graph analytics',
         'Built recommendation systems on 16 years of transaction data',
@@ -132,22 +142,22 @@ function App() {
     },
     {
       title: 'Junior Software Developer',
-      company: 'Previous Role',
+      company: 'eSewa Ltd.',
       period: 'Sep 2018 – Aug 2019',
       achievements: [
-        'Developed scalable backend systems',
-        'Implemented automated testing frameworks',
-        'Contributed to microservices architecture'
+        'Developed scalable backend systems for fintech operations',
+        'Implemented automated testing frameworks for payment processing',
+        'Contributed to microservices architecture for mobile payments'
       ]
     },
     {
       title: 'Java Intern',
-      company: 'Internship Role',
+      company: 'eSewa Ltd.',
       period: 'Jun 2018 – Aug 2018',
       achievements: [
-        'Gained hands-on experience with Java development',
-        'Worked on enterprise application features',
-        'Collaborated with senior developers on code reviews'
+        'Gained hands-on experience with Java development in fintech',
+        'Worked on enterprise payment application features',
+        'Collaborated with senior developers on code reviews and best practices'
       ]
     }
   ];
@@ -438,7 +448,7 @@ function App() {
       </section>
 
       {/* Education Section */}
-      <section className="py-16 bg-muted/30">
+      <section id="education" className="py-16 bg-muted/30">
         <div className="container mx-auto px-6">
           <motion.div
             initial="hidden"
