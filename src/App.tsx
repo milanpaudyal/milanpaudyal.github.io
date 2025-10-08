@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Moon, Sun, Code, Briefcase, User, ChatCircle, ArrowRight, Download, LinkedinLogo, GithubLogo } from '@phosphor-icons/react';
+import { Moon, Sun, Code, Briefcase, User, ChatCircle, ArrowRight, Download, LinkedinLogo, GithubLogo, Robot, Database, Gear } from '@phosphor-icons/react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -152,6 +152,21 @@ function App() {
     }
   ];
 
+  const education = [
+    {
+      institution: 'Shanker Dev Campus',
+      degree: "Bachelor's degree • BIM",
+      period: '2014 - 2019',
+      logo: '🎓' // Using emoji as placeholder for the star logo
+    },
+    {
+      institution: 'Siddhartha Gautam Buddha Campus',
+      degree: '+2 • Management',
+      period: '2012 - 2014',
+      logo: '📚' // Using emoji as placeholder for the circular logo
+    }
+  ];
+
   const certifications = [
     'Advanced Learning Algorithms — DeepLearning.AI, Stanford (2025)',
     'Supervised Machine Learning — DeepLearning.AI (2024)',
@@ -188,7 +203,7 @@ function App() {
           </motion.div>
           
           <nav className="hidden md:flex space-x-8">
-            {['About', 'Experience', 'Projects', 'Contact'].map((item) => (
+            {['About', 'Experience', 'Education', 'Projects', 'Contact'].map((item) => (
               <button
                 key={item}
                 onClick={() => scrollToSection(item.toLowerCase())}
@@ -226,7 +241,7 @@ function App() {
               </h1>
               
               <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-lg">
-                Building intelligent AI systems for fraud detection and recommendation engines in fintech.
+                Building intelligent automation and agentic AI systems that make processes smarter and more impactful.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
@@ -342,9 +357,9 @@ function App() {
                             categoryIndex === 1 ? 'bg-emerald-100 text-emerald-600' :
                             'bg-violet-100 text-violet-600'
                           }`}>
-                            {categoryIndex === 0 ? <Code size={18} /> :
-                             categoryIndex === 1 ? <Briefcase size={18} /> :
-                             <User size={18} />}
+                            {categoryIndex === 0 ? <Robot size={18} /> :
+                             categoryIndex === 1 ? <Database size={18} /> :
+                             <Gear size={18} />}
                           </div>
                           
                           <p className="font-medium text-sm text-foreground group-hover:text-foreground">
@@ -361,7 +376,7 @@ function App() {
         </div>
       </section>
 
-      {/* Experience Section */}
+      {/* Experience Section with Timeline */}
       <section id="experience" className="py-16">
         <div className="container mx-auto px-6">
           <motion.div
@@ -374,30 +389,82 @@ function App() {
               Experience
             </motion.h2>
             
+            <div className="max-w-4xl mx-auto">
+              <div className="relative">
+                {/* Timeline line */}
+                <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-primary/50 to-transparent" />
+                
+                <div className="space-y-12">
+                  {experience.map((role, index) => (
+                    <motion.div key={index} variants={fadeInUp} className="relative">
+                      {/* Timeline dot */}
+                      <div className="absolute left-6 w-4 h-4 bg-primary rounded-full border-4 border-background shadow-lg" />
+                      
+                      {/* Content */}
+                      <div className="ml-20">
+                        <Card className="hover:shadow-lg transition-all duration-300">
+                          <CardHeader>
+                            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
+                              <div>
+                                <CardTitle className="text-xl">{role.title}</CardTitle>
+                                <CardDescription className="text-lg font-medium text-primary">
+                                  {role.company}
+                                </CardDescription>
+                              </div>
+                              <Badge variant="outline" className="self-start">
+                                {role.period}
+                              </Badge>
+                            </div>
+                          </CardHeader>
+                          <CardContent>
+                            <ul className="space-y-2">
+                              {role.achievements.map((achievement, i) => (
+                                <li key={i} className="flex items-start gap-2">
+                                  <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0" />
+                                  <span>{achievement}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </CardContent>
+                        </Card>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Education Section */}
+      <section className="py-16 bg-muted/30">
+        <div className="container mx-auto px-6">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+          >
+            <motion.h2 variants={fadeInUp} className="text-3xl font-bold text-center mb-12">
+              Education
+            </motion.h2>
+            
             <div className="max-w-3xl mx-auto space-y-8">
-              {experience.map((role, index) => (
+              {education.map((edu, index) => (
                 <motion.div key={index} variants={fadeInUp}>
                   <Card className="hover:shadow-lg transition-all duration-300">
-                    <CardHeader>
-                      <div className="flex justify-between items-start">
-                        <div>
-                          <CardTitle className="text-xl">{role.title}</CardTitle>
-                          <CardDescription className="text-lg font-medium text-primary">
-                            {role.company}
-                          </CardDescription>
+                    <CardContent className="p-6">
+                      <div className="flex items-start gap-4">
+                        <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-accent/20 rounded-xl flex items-center justify-center text-2xl flex-shrink-0">
+                          {edu.logo}
                         </div>
-                        <Badge variant="outline">{role.period}</Badge>
+                        <div className="flex-1">
+                          <h3 className="text-xl font-semibold mb-1">{edu.institution}</h3>
+                          <p className="text-lg text-muted-foreground mb-2">{edu.degree}</p>
+                          <p className="text-sm text-muted-foreground">{edu.period}</p>
+                        </div>
                       </div>
-                    </CardHeader>
-                    <CardContent>
-                      <ul className="space-y-2">
-                        {role.achievements.map((achievement, i) => (
-                          <li key={i} className="flex items-start gap-2">
-                            <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0" />
-                            <span>{achievement}</span>
-                          </li>
-                        ))}
-                      </ul>
                     </CardContent>
                   </Card>
                 </motion.div>
@@ -408,7 +475,7 @@ function App() {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-16 bg-muted/30">
+      <section id="projects" className="py-16">
         <div className="container mx-auto px-6">
           <motion.div
             initial="hidden"
@@ -454,7 +521,7 @@ function App() {
       </section>
 
       {/* Talks & Certifications */}
-      <section className="py-16">
+      <section className="py-16 bg-muted/30">
         <div className="container mx-auto px-6">
           <motion.div
             initial="hidden"
@@ -510,7 +577,7 @@ function App() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-16 bg-muted/30">
+      <section id="contact" className="py-16">
         <div className="container mx-auto px-6">
           <motion.div
             initial="hidden"
