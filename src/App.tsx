@@ -308,7 +308,7 @@ function App() {
               </p>
               
               <p>
-                I build pragmatic ML systems and reliable automation for fintech — focusing on real-time fraud detection, scalable recommendation pipelines, and solutions teams can ship.
+                I build pragmatic ML systems and reliable automation for fintech — focusing on intelligent automation, scalable agentic AI pipelines, and solutions teams can ship.
               </p>
             </motion.div>
           </motion.div>
