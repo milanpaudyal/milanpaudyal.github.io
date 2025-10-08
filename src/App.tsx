@@ -121,19 +121,9 @@ function App() {
 
   const experience = [
     {
-      title: 'AI/ML & Automation Lead',
-      company: 'eSewa',
-      period: 'Aug 2025 – Present',
-      achievements: [
-        'Leading AI/ML strategy and implementation across fintech products',
-        'Managing team of 8 engineers across ML and automation initiatives',
-        'Architecting next-generation fraud detection and recommendation systems'
-      ]
-    },
-    {
       title: 'AI/ML Engineer',
       company: 'eSewa',
-      period: 'Sep 2022 – Aug 2025',
+      period: 'Sep 2022 – Present',
       achievements: [
         'Designed fraud detection pipelines using graph analytics',
         'Built recommendation systems on 16 years of transaction data',
@@ -141,13 +131,23 @@ function App() {
       ]
     },
     {
-      title: 'Software Engineer',
+      title: 'Junior Software Developer',
       company: 'Previous Role',
-      period: '2021 – 2022',
+      period: 'Sep 2018 – Aug 2019',
       achievements: [
         'Developed scalable backend systems',
         'Implemented automated testing frameworks',
         'Contributed to microservices architecture'
+      ]
+    },
+    {
+      title: 'Java Intern',
+      company: 'Internship Role',
+      period: 'Jun 2018 – Aug 2018',
+      achievements: [
+        'Gained hands-on experience with Java development',
+        'Worked on enterprise application features',
+        'Collaborated with senior developers on code reviews'
       ]
     }
   ];
@@ -222,11 +222,11 @@ function App() {
             >
               <h1 className="text-4xl lg:text-6xl font-bold leading-tight tracking-tight">
                 Milan Paudyal
-                <span className="block text-primary mt-2">AI/ML & Automation Lead</span>
+                <span className="block text-primary mt-2">AI/ML Engineer</span>
               </h1>
               
               <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-lg">
-                Building reliable AI systems and real-time fraud detection for fintech.
+                Building intelligent AI systems for fraud detection and recommendation engines in fintech.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
@@ -303,25 +303,57 @@ function App() {
               Skills & Tools
             </motion.h2>
             
-            <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-              {Object.entries(skills).map(([category, items]) => (
-                <motion.div key={category} variants={fadeInUp}>
-                  <Card>
-                    <CardHeader>
-                      <CardTitle className="text-lg font-semibold text-primary">
-                        {category}
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="flex flex-wrap gap-2">
-                        {items.map((skill) => (
-                          <Badge key={skill} variant="secondary">
+            <div className="max-w-6xl mx-auto">
+              {Object.entries(skills).map(([category, items], categoryIndex) => (
+                <motion.div key={category} variants={fadeInUp} className="mb-12 last:mb-0">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className={`w-2 h-8 rounded-full ${
+                      categoryIndex === 0 ? 'bg-blue-500' : 
+                      categoryIndex === 1 ? 'bg-emerald-500' : 'bg-violet-500'
+                    }`} />
+                    <h3 className="text-xl font-semibold text-foreground">
+                      {category}
+                    </h3>
+                  </div>
+                  
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                    {items.map((skill, index) => (
+                      <motion.div
+                        key={skill}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: index * 0.1 }}
+                        whileHover={{ scale: 1.05, y: -2 }}
+                        className={`group relative p-4 rounded-xl border-2 transition-all duration-300 cursor-pointer ${
+                          categoryIndex === 0 ? 'border-blue-200 hover:border-blue-400 hover:shadow-blue-100' :
+                          categoryIndex === 1 ? 'border-emerald-200 hover:border-emerald-400 hover:shadow-emerald-100' :
+                          'border-violet-200 hover:border-violet-400 hover:shadow-violet-100'
+                        } hover:shadow-lg bg-card`}
+                      >
+                        <div className={`absolute inset-0 rounded-xl opacity-0 group-hover:opacity-10 transition-opacity ${
+                          categoryIndex === 0 ? 'bg-blue-500' :
+                          categoryIndex === 1 ? 'bg-emerald-500' : 'bg-violet-500'
+                        }`} />
+                        
+                        <div className="relative z-10 text-center">
+                          <div className={`w-8 h-8 rounded-lg mx-auto mb-2 flex items-center justify-center ${
+                            categoryIndex === 0 ? 'bg-blue-100 text-blue-600' :
+                            categoryIndex === 1 ? 'bg-emerald-100 text-emerald-600' :
+                            'bg-violet-100 text-violet-600'
+                          }`}>
+                            {categoryIndex === 0 ? <Code size={18} /> :
+                             categoryIndex === 1 ? <Briefcase size={18} /> :
+                             <User size={18} />}
+                          </div>
+                          
+                          <p className="font-medium text-sm text-foreground group-hover:text-foreground">
                             {skill}
-                          </Badge>
-                        ))}
-                      </div>
-                    </CardContent>
-                  </Card>
+                          </p>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
                 </motion.div>
               ))}
             </div>
@@ -436,12 +468,19 @@ function App() {
             
             <div className="max-w-4xl mx-auto space-y-8">
               <motion.div variants={fadeInUp}>
-                <Card className="bg-accent/10 border-accent">
+                <Card className="relative overflow-hidden bg-gradient-to-br from-blue-500/10 via-red-500/10 to-yellow-500/10 border-0 shadow-lg">
+                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-red-500 via-yellow-500 to-green-500" />
                   <CardHeader>
-                    <CardTitle className="text-xl text-accent-foreground">
+                    <CardTitle className="text-xl flex items-center gap-2">
+                      <div className="flex gap-1">
+                        <div className="w-2 h-2 rounded-full bg-blue-500" />
+                        <div className="w-2 h-2 rounded-full bg-red-500" />
+                        <div className="w-2 h-2 rounded-full bg-yellow-500" />
+                        <div className="w-2 h-2 rounded-full bg-green-500" />
+                      </div>
                       Speaker — Google I/O Extended LITE Kathmandu 2025
                     </CardTitle>
-                    <CardDescription className="text-base">
+                    <CardDescription className="text-base font-medium">
                       From Retrieval to Action: Agentic AI with Gemini & ADK
                     </CardDescription>
                   </CardHeader>
