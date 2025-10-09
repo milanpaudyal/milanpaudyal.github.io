@@ -65,7 +65,7 @@ function App() {
   const skills = {
     'AI/ML': ['Python', 'FastAPI', 'LangChain', 'Vector DBs', 'Embeddings'],
     'Data': ['Memgraph', 'Neo4j', 'Redis', 'MySQL', 'PySpark'],
-    'Infrastructure': ['Docker', 'CI/CD', 'Scheduler Design']
+    'Infrastructure': ['Docker', 'CI/CD']
   };
 
   const projects = [
